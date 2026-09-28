@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE GUPTA AGE — The Golden Age of Ancient India</title>
+    <meta name="description" content="An immersive 3D virtual museum portfolio dedicated to the Gupta Empire of Ancient India. Explore imperial history, science, Aryabhata, Kalidasa, classical art, architecture, and enduring civilizational legacy.">
+
+    <!-- Google Fonts: Cinzel Decorative, Cinzel, Cormorant Garamond, Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Main Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+
+    <!-- External Libraries: Three.js and GSAP with ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+    <!-- Dynamic Scroll Progress Bar -->
+    <div id="scroll-progress-bar"></div>
+
+    <!-- Master Three.js Fullscreen 3D Temple Environment Canvas -->
+    <div id="three-bg-canvas-container" aria-hidden="true"></div>
+
+    <!-- -------------------------------------------------------------
+         NAVIGATION BAR
+         ------------------------------------------------------------- -->
+    <header>
+        <nav id="main-nav" aria-label="Museum Navigation">
+            <a href="#hero" class="nav-brand">
+                <!-- Royal Garuda Seal of the Gupta Dynasty -->
+                <svg class="brand-emblem-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="46" stroke="#d4af37" stroke-width="2.5" stroke-dasharray="3 3"/>
+                    <circle cx="50" cy="50" r="41" stroke="#ffd700" stroke-width="1.5"/>
+                    <!-- Stylized Sacred Garuda / Solar Bird -->
+                    <path d="M50 18 L55 32 L68 35 L57 44 L60 58 L50 49 L40 58 L43 44 L32 35 L45 32 Z" fill="#ffd700" stroke="#b8860b" stroke-width="1"/>
+                    <path d="M22 62 C32 50, 42 55, 50 64 C58 55, 68 50, 78 62 C68 76, 58 72, 50 82 C42 72, 32 76, 22 62 Z" fill="#efb82a" opacity="0.9"/>
+                    <circle cx="50" cy="62" r="5" fill="#ffffff"/>
+                </svg>
+                <div class="brand-title-wrap">
+                    <span class="brand-title">THE GUPTA AGE</span>
+                    <span class="brand-subtitle">Virtual Museum • c. 320–550 CE</span>
+                </div>
+            </a>
+
+            <ul class="nav-links-wrap" id="nav-menu">
+                <li><a href="#hero" class="nav-link active">Home</a></li>
+                <li><a href="#empire" class="nav-link">Empire</a></li>
+                <li><a href="#rulers" class="nav-link">Society</a></li>
+                <li><a href="#science" class="nav-link">Science</a></li>
+                <li><a href="#literature" class="nav-link">Literature</a></li>
+                <li><a href="#art" class="nav-link">Art & Architecture</a></li>
+                <li><a href="#economy" class="nav-link">Economy</a></li>
+                <li><a href="#culture" class="nav-link">Culture</a></li>
+                <li><a href="#legacy" class="nav-link">Legacy</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <!-- Procedural Audio Engine Soundscape Toggle -->
+                <button type="button" class="sound-toggle-btn" id="sound-toggle-btn" title="Toggle Ancient Temple Soundscape">
+                    <span class="sound-icon-wave">
+                        <span></span><span></span><span></span>
+                    </span>
+                    <span class="sound-status-text">Temple Sound</span>
+                </button>
+
+                <!-- Mobile Hamburger Toggle -->
+                <button type="button" class="mobile-menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+                    ☰
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- -------------------------------------------------------------
+             HERO SECTION: DRAMATIC 3D TEMPLE ENVIRONMENT
+             ------------------------------------------------------------- -->
+        <section id="hero">
+            <div class="hero-content-wrap">
+                <div class="hero-sanskrit-tag">𑀲𑀼𑀯𑀭𑁆𑀡 𑀬𑀼𑀕 • THE IMPERIAL GOLDEN AGE</div>
+                
+                <h1 class="hero-main-title">THE GUPTA AGE</h1>
+                
+                <div class="hero-subtitle">The Golden Age of Ancient India</div>
+                
+                <div class="gold-filigree-divider">
+                    <span class="filigree-emblem">❖</span>
+                </div>
+
+                <p class="hero-small-text">
+                    Exploring the Empire, Science, Literature, Art and Culture of the Gupta Period
+                </p>
+
+                <div class="hero-cta-wrap">
+                    <button type="button" class="btn-antique-gold" id="btn-enter-archive">
+                        <span>ENTER THE ARCHIVE</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-scroll-indicator">
+                <span>Descend Into History</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                </svg>
+            </div>
+        </section>
+
+        <!-- -------------------------------------------------------------
+             SECTION 1 — THE GUPTA EMPIRE (MAP & 3D ROTATING COIN)
+             ------------------------------------------------------------- -->
+        <div class="section-outer-wrapper">
+            <section id="empire">
+                <div class="section-header-centered">
+                    <span class="section-eyebrow">Imperium & Geopolitics</span>
+                    <h2>THE GUPTA EMPIRE</h2>
+                    <div class="gold-filigree-divider"><span class="filigree-emblem">✦</span></div>
+                    <p class="serif-lead">
+                        From the fertile plains of the Ganga to the Arabian Sea, an empire of unparalleled peace, administrative genius, and commercial prosperity.
+                    </p>
+                </div>
+
+                <div class="empire-interactive-grid">
+                    <!-- Interactive 3D Ancient India Map Display -->
+                    <div class="ancient-map-container museum-glass-panel">
+                        <div class="corner-ornament corner-top-left"></div>
+                        <div class="corner-ornament corner-top-right"></div>
+                        <div class="corner-ornament corner-bottom-left"></div>
+                        <div class="corner-ornament corner-bottom-right"></div>
+
+                        <div class="map-header">
+                            <div>
+                                <h3 style="font-size: 1.15rem; color: var(--gold-bright);">Aryāvarta • Imperial Territory & Ports</h3>
+                                <span style="font-size: 0.8rem; color: var(--sandstone-mid);">Select an imperial city to inspect records</span>
+                            </div>
+                            <span class="timeline-badge">c. 320 – 550 CE</span>
+                        </div>
+
+                        <!-- Stylized SVG Map of Ancient India with Interactive Nodes -->
+                        <div class="map-svg-wrap">
+                            <svg viewBox="0 0 700 500" width="100%" height="100%" style="overflow: visible;">
+                                <!-- Coastline & River Network (Sindhu, Ganga, Yamuna, Narmada) -->
+                                <path d="M 120 80 Q 220 90 280 140 T 420 160 T 560 210 Q 580 280 540 330 Q 480 390 380 460 Q 320 380 240 320 Q 180 260 160 210 Z" 
+                                      fill="rgba(212, 175, 55, 0.08)" stroke="rgba(212, 175, 55, 0.45)" stroke-width="2" stroke-dasharray="6 3"/>
+                                
+                                <!-- Sacred Ganga-Yamuna River Arteries -->
+                                <path d="M 230 140 Q 320 160 380 180 T 480 200 T 540 220" 
+                                      fill="none" stroke="rgba(80, 160, 240, 0.55)" stroke-width="2"/>
+                                
+                                <!-- Golden Imperial Trade Routes (Uttarapatha & Dakshinapatha) -->
+                                <path d="M 210 130 L 290 160 L 370 180 L 460 190 L 530 220" 
+                                      fill="none" stroke="#d4af37" stroke-width="2.5" stroke-dasharray="4 4"/>
+                                <path d="M 290 160 L 260 240 L 220 270" 
+                                      fill="none" stroke="#ffd700" stroke-width="2" stroke-dasharray="3 3"/>
+
+                                <!-- Interactive City Nodes -->
+                                <!-- 1. Pataliputra (Capital) -->
+                                <g class="map-city-node active" data-city="pataliputra" transform="translate(460, 190)">
+                                    <circle class="node-pulse-ring" cx="0" cy="0" r="10" fill="none" stroke="#ffd700" stroke-width="2"/>
+                                    <circle class="node-dot" cx="0" cy="0" r="7" fill="#ffd700"/>
+                                    <text x="14" y="5" font-family="'Cinzel', serif" font-size="13" fill="#ffd700" font-weight="600">Pāṭaliputra ★</text>
+                                </g>
+
+                                <!-- 2. Ujjain (Commercial Meridian) -->
+                                <g class="map-city-node" data-city="ujjain" transform="translate(260, 240)">
+                                    <circle class="node-pulse-ring" cx="0" cy="0" r="9" fill="none" stroke="#d4af37" stroke-width="1.5"/>
+                                    <circle class="node-dot" cx="0" cy="0" r="6" fill="#d4af37"/>
+                                    <text x="12" y="5" font-family="'Cinzel', serif" font-size="12" fill="#dfb482">Ujjayinī</text>
+                                </g>
+
+                                <!-- 3. Nalanda -->
+                                <g class="map-city-node" data-city="nalanda" transform="translate(485, 205)">
+                                    <circle class="node-dot" cx="0" cy="0" r="5" fill="#d4af37"/>
+                                    <text x="10" y="4" font-family="'Cinzel', serif" font-size="11" fill="#dfb482">Nālandā</text>
+                                </g>
+
+                                <!-- 4. Mathura -->
+                                <g class="map-city-node" data-city="mathura" transform="translate(290, 155)">
+                                    <circle class="node-dot" cx="0" cy="0" r="5" fill="#d4af37"/>
+                                    <text x="-65" y="-6" font-family="'Cinzel', serif" font-size="11" fill="#dfb482">Mathurā</text>
+                                </g>
+
+                                <!-- 5. Prayaga (Allahabad Pillar) -->
+                                <g class="map-city-node" data-city="prayaga" transform="translate(370, 180)">
+                                    <circle class="node-dot" cx="0" cy="0" r="6" fill="#d4af37"/>
+                                    <text x="-58" y="16" font-family="'Cinzel', serif" font-size="11" fill="#dfb482">Prayāga</text>
+                                </g>
+
+                                <!-- 6. Bharuch (Barygaza Port) -->
+                                <g class="map-city-node" data-city="bharuch" transform="translate(215, 275)">
+                                    <circle class="node-dot" cx="0" cy="0" r="5" fill="#50c878"/>
+                                    <text x="-75" y="14" font-family="'Cinzel', serif" font-size="11" fill="#88ddaa">⚓ Bharuch</text>
+                                </g>
+
+                                <!-- 7. Tamralipti Port -->
+                                <g class="map-city-node" data-city="tamralipti" transform="translate(535, 225)">
+                                    <circle class="node-dot" cx="0" cy="0" r="5" fill="#50c878"/>
+                                    <text x="12" y="14" font-family="'Cinzel', serif" font-size="11" fill="#88ddaa">⚓ Tāmralipti</text>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <!-- City Dossier Display Panel -->
+                        <div class="map-dossier-panel" id="map-dossier-box">
+                            <h4 class="map-dossier-title" id="map-info-title">Pāṭaliputra (Patna)</h4>
+                            <div class="map-dossier-role" id="map-info-role">Imperial Capital of the Gupta Dynasty</div>
+                            <p id="map-info-desc" style="font-size: 0.95rem; margin-bottom: 0.6rem;">
+                                The seat of imperial power overlooking the confluence of sacred rivers. Faxian described it as a magnificent city with stone palaces built like works of spirits, vast hospitals offering free medical care, and thriving charitable rest-houses.
+                            </p>
+                            <div style="font-size: 0.85rem; color: var(--gold-bright);">
+                                <strong>Historical Significance:</strong> <span id="map-info-significance">Administrative centre, royal treasury, and imperial mint producing the finest gold dinaras.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3D Rotating Ancient Gupta Coin Card beside content -->
+                    <div class="coin-interactive-card">
+                        <div class="corner-ornament corner-top-left"></div>
+                        <div class="corner-ornament corner-top-right"></div>
+                        <div class="corner-ornament corner-bottom-left"></div>
+                        <div class="corner-ornament corner-bottom-right"></div>
+
+                        <span class="section-eyebrow">Numismatic Masterpiece</span>
+                        <h3 style="margin-bottom: 0.5rem; color: var(--gold-bright);">Imperial Gold Dīnāra</h3>
+                        <p style="font-size: 0.92rem; color: var(--sandstone-mid); margin-bottom: 0.5rem;">
+                            Drag to rotate in full 3D • Features King Samudragupta & Goddess Lakshmī
+                        </p>
+
+                        <!-- Canvas container for 3D coin -->
+                        <div id="coin-3d-canvas-container"></div>
+
+                        <div class="coin-controls">
+                            <button type="button" class="btn-glass-bronze" id="btn-flip-coin">
+                                <span>Flip Coin 180°</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                                    <path d="M3 3v5h5"/>
+                                    <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
+                                    <path d="M16 21h5v-5"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Historical Timeline Cards Connected by Animated Gold Line -->
+                <div class="timeline-section-wrap">
+                    <div class="section-header-centered" style="margin-bottom: 2.5rem;">
+                        <span class="section-eyebrow">Dynastic Evolution</span>
+                        <h3 style="font-size: 2rem;">Imperial Chronology</h3>
+                    </div>
+
+                    <div class="timeline-cards-row">
+                        <div class="timeline-gold-connector" aria-hidden="true"></div>
+
+                        <!-- Card 1: Chandragupta I -->
+                        <div class="timeline-hist-card">
+                            <span class="timeline-badge">c. 320 – 335 CE</span>
+                            <h4 style="font-size: 1.4rem; color: var(--gold-bright); margin-bottom: 0.4rem;">Chandragupta I</h4>
+                            <div class="serif-lead" style="font-size: 1.05rem; margin-bottom: 1rem;">Foundation of the Imperial Era</div>
+                            <p style="font-size: 0.92rem;">
+                                Assumed the grand title <em>Mahārājādhirāja</em>. Forged a crucial matrimonial alliance with the Licchavis of Vaishali, uniting the Gangetic valley and founding the Gupta Era calendar in 319–320 CE.
+                            </p>
+                        </div>
+
+                        <!-- Card 2: Samudragupta -->
+                        <div class="timeline-hist-card">
+                            <span class="timeline-badge">c. 335 – 375 CE</span>
+                            <h4 style="font-size: 1.4rem; color: var(--gold-bright); margin-bottom: 0.4rem;">Samudragupta</h4>
+                            <div class="serif-lead" style="font-size: 1.05rem; margin-bottom: 1rem;">The Digvijaya Conquests</div>
+                            <p style="font-size: 0.92rem;">
+                                Celebrated as the "Indian Napoleon". His unbroken victories across Northern India and the Deccan are recorded on the Allahabad Pillar. A patron of poetry and music, who revived the Vedic Ashvamedha sacrifice.
+                            </p>
+                        </div>
+
+                        <!-- Card 3: Chandragupta II -->
+                        <div class="timeline-hist-card">
+                            <span class="timeline-badge">c. 375 – 415 CE</span>
+                            <h4 style="font-size: 1.4rem; color: var(--gold-bright); margin-bottom: 0.4rem;">Chandragupta II</h4>
+                            <div class="serif-lead" style="font-size: 1.05rem; margin-bottom: 1rem;">Vikramāditya & The Cultural Zenith</div>
+                            <p style="font-size: 0.92rem;">
+                                Defeated the Western Shakas to secure coastal Arabian Sea ports. Patronized the illustrious Navaratnas (Nine Gems) including Kalidasa, ushering in the golden pinnacle of classical Sanskrit civilization.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- -------------------------------------------------------------
+             SECTION 2 — GREAT RULERS (3D ROYAL TILT CARDS)
+             ------------------------------------------------------------- -->
+        <div class="section-outer-wrapper">
+            <section id="rulers">
+                <div class="section-header-centered">
+                    <span class="section-eyebrow">Sovereigns of the Golden Age</span>
+                    <h2>GREAT RULERS</h2>
+                    <div class="gold-filigree-divider"><span class="filigree-emblem">👑</span></div>
+                    <p class="serif-lead">
+                        Visionary monarchs who synthesized martial genius, benevolent statecraft, and unparalleled cultural patronage. Hover to experience 3D perspective tilt.
+                    </p>
+                </div>
+
+                <div class="royal-cards-container">
+                    <!-- Royal Card 1: Chandragupta I -->
+                    <div class="royal-3d-card" data-ruler="chandragupta-1">
+                        <div class="royal-card-inner">
+                            <div class="card-glare"></div>
+                            <div>
+                                <div class="ruler-regal-portrait-badge">
+                                    <!-- Crown / Scepter Icon -->
+                                    <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#ffd700" stroke-width="1.8">
+                                        <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14v2H5v-2z"/>
+                                    </svg>
+                                </div>
+                                <span class="timeline-badge">c. 320 – 335 CE</span>
+                                <h3 class="ruler-card-title">Chandragupta I</h3>
+                                <div class="ruler-card-epithet">Founder of Gupta Imperial Power</div>
+                                <p class="ruler-card-desc">
+                                    Transformed a regional principality into a vast sovereign empire. His alliance with Princess Kumāradevī of the Licchavis laid the bedrock of Gupta legitimacy and power.
+                                </p>
+                                <ul class="ruler-achievements-list">
+                                    <li>Established the Gupta Sanvat Era (319–320 CE)</li>
+                                    <li>First to assume the title <em>Mahārājādhirāja</em></li>
+                                    <li>Minted joint King & Queen commemorative gold dinaras</li>
+                                </ul>
+                            </div>
+                            <button type="button" class="btn-glass-bronze btn-ruler-details" data-ruler="chandragupta-1">
+                                <span>Imperial Chronicle</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Royal Card 2: Samudragupta -->
+                    <div class="royal-3d-card" data-ruler="samudragupta">
+                        <div class="royal-card-inner">
+                            <div class="card-glare"></div>
+                            <div>
+                                <div class="ruler-regal-portrait-badge">
+                                    <!-- Lyre / Veena Icon -->
+                                    <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#ffd700" stroke-width="1.8">
+                                        <path d="M9 18V5l12-2v13"/>
+                                        <circle cx="6" cy="18" r="3"/>
+                                        <circle cx="18" cy="16" r="3"/>
+                                    </svg>
+                                </div>
+                                <span class="timeline-badge">c. 335 – 375 CE</span>
+                                <h3 class="ruler-card-title">Samudragupta</h3>
+                                <div class="ruler-card-epithet">Known for Military Campaigns & Kavirāja</div>
+                                <p class="ruler-card-desc">
+                                    Renowned for military campaigns and territorial expansion. Orchestrated the legendary Digvijaya conquests recorded on the Prayāga Prashasti, while composing poetry and playing the veena.
+                                </p>
+                                <ul class="ruler-achievements-list">
+                                    <li>Conquered 12 kingdoms of the South through <em>Dharmavijaya</em></li>
+                                    <li>Honored as <em>Kavirāja</em> (King of Poets)</li>
+                                    <li>Revived the Vedic <em>Ashvamedha</em> horse sacrifice</li>
+                                </ul>
+                            </div>
+                            <button type="button" class="btn-glass-bronze btn-ruler-details" data-ruler="samudragupta">
+                                <span>Imperial Chronicle</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Royal Card 3: Chandragupta II -->
+                    <div class="royal-3d-card" data-ruler="chandragupta-2">
+                        <div class="royal-card-inner">
+                            <div class="card-glare"></div>
+                            <div>
+                                <div class="ruler-regal-portrait-badge">
+                                    <!-- Sun of Valour Icon -->
+                                    <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#ffd700" stroke-width="1.8">
+                                        <circle cx="12" cy="12" r="5"/>
+                                        <line x1="12" y1="1" x2="12" y2="3"/>
+                                        <line x1="12" y1="21" x2="12" y2="23"/>
+                                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                                        <line x1="1" y1="12" x2="3" y2="12"/>
+                                        <line x1="21" y1="12" x2="23" y2="12"/>
+                                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                                    </svg>
+                                </div>
+                                <span class="timeline-badge">c. 375 – 415 CE</span>
+                                <h3 class="ruler-card-title">Chandragupta II</h3>
+                                <div class="ruler-card-epithet">Title Vikramāditya • Cultural Zenith</div>
+                                <p class="ruler-card-desc">
+                                    Associated with cultural development and the title Vikramaditya. Annexed the Western Kshatrapas, gained control of maritime trade, and gathered the Nine Gems at his glittering court in Ujjayinī.
+                                </p>
+                                <ul class="ruler-achievements-list">
+                                    <li>Eradicated the 400-year Shaka rule in Gujarat & Malwa</li>
+                                    <li>Patron of Kālidāsa, Varāhamihira & Amarasimha</li>
+                                    <li>Celebrated in the travel accounts of Buddhist monk Faxian</li>
+                                </ul>
+                            </div>
+                            <button type="button" class="btn-glass-bronze btn-ruler-details" data-ruler="chandragupta-2">
+                                <span>Imperial Chronicle</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- -------------------------------------------------------------
+             SECTION 3 — SCIENCE & MATHEMATICS (OBSERVATORY & ARYABHATA)
+             ------------------------------------------------------------- -->
+        <div class="section-outer-wrapper">
+            <section id="science">
+                <div class="section-header-centered">
+                    <span class="section-eyebrow">Celestial Knowledge & Numbers</span>
+                    <h2>SCIENCE & MATHEMATICS</h2>
+                    <div class="gold-filigree-divider"><span class="filigree-emblem">🪐</span></div>
+                    <p class="serif-lead">
+                        The Gupta period witnessed important developments in mathematics and astronomy. Aryabhata made influential contributions to astronomical calculations and mathematics.
+                    </p>
+                </div>
+
+                <div class="science-layout-grid">
+                    <!-- 3D Ancient Astronomical Instrument (Golayantra / Armillary Sphere) -->
+                    <div class="observatory-canvas-panel">
+                        <div class="corner-ornament corner-top-left"></div>
+                        <div class="corner-ornament corner-top-right"></div>
+                        <div class="corner-ornament corner-bottom-left"></div>
+                        <div class="corner-ornament corner-bottom-right"></div>
+
+                        <span class="section-eyebrow" style="border-color: rgba(80, 160, 240, 0.4); color: #8ac4ff;">3D Interactive Instrument</span>
+                        <h3 style="color: #cce4ff; font-size: 1.4rem; margin: 0.5rem 0 0.3rem 0;">Aryabhata's Golayantra (Armillary Sphere)</h3>
+                        <p style="font-size: 0.85rem; color: #9bbbd8; margin-bottom: 0.8rem;">
+                            Drag to rotate celestial rings • Shows Ecliptic, Celestial Equator & Earth spinning on its axis
+                        </p>
+
+                        <div id="armillary-3d-canvas-container"></div>
+
+                        <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 0.8rem;">
+                            <button type="button" class="btn-glass-bronze" id="btn-toggle-earth-rotation" style="border-color: #50c878; color: #a0f0b8;">
+                                <span>Toggle Earth Axial Spin</span>
+                            </button>
+                        </div>
+                        <div id="earth-rotation-status" style="font-size: 0.82rem; color: #88c0d0; margin-top: 0.6rem;">
+                            Aryabhata's Principle: Earth rotates on its own axis daily (365.25868 days/year)
+                        </div>
+                    </div>
+
+                    <!-- Aryabhata Feature & Mathematics Sandbox -->
+                    <div class="science-feature-card">
+                        <span class="section-eyebrow">Astronomer & Mathematician</span>
+                        <h3 class="aryabhata-spotlight-title">ARYABHATA</h3>
+                        <div class="aryabhata-subtitle">Author of Āryabhaṭīya (c. 499 CE) • Born 476 CE, Kusumapura</div>
+
+                        <p>
+                            “The Gupta period witnessed important developments in mathematics and astronomy. Aryabhata made influential contributions to astronomical calculations and mathematics.”
+                        </p>
+                        <p style="font-size: 0.95rem; color: rgba(246, 238, 223, 0.8);">
+                            Aryabhata revolutionized world science by establishing that the Earth is a sphere that rotates continuously upon its axis, that lunar and solar eclipses are natural shadows rather than demonic occurrences, and formulating the trigonometric sine (<em style="color: var(--gold-bright);">jyā</em>).
+                        </p>
+
+                        <!-- Interactive Pi Calculation Simulator Box -->
+                        <div class="interactive-pi-box">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <strong style="color: var(--gold-bright);">Aryabhata's Pi (π) Ratio Simulator</strong>
+                                <span class="timeline-badge" style="margin-bottom: 0;">Verse 10, Ganitapada</span>
+                            </div>
+                            <p style="font-size: 0.85rem; margin: 0.5rem 0; color: var(--sandstone-light);">
+                                <em>"Add 4 to 100, multiply by 8, add 62,000. For a diameter of 20,000, circumference is approximately 62,832."</em>
+                            </p>
+
+                            <div class="pi-slider-wrap">
+                                <label for="pi-diameter-input" style="font-size: 0.85rem; color: var(--sandstone-mid);">Circle Diameter:</label>
+                                <input type="range" id="pi-diameter-input" min="1000" max="40000" step="1000" value="20000">
+                            </div>
+
+                            <div class="pi-values-display">
+                                <div>
+                                    <div style="font-size: 0.75rem; color: var(--sandstone-mid);">Calculated Circumference:</div>
+                                    <div class="pi-val-highlight" id="pi-circ-display">62832.0000</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.75rem; color: var(--sandstone-mid);">Aryabhata's π Approximation:</div>
+                                    <div class="pi-val-highlight" id="pi-ratio-display">62832 / 20000 = 3.1416</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Decimal & Zero Feature -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+                            <div style="background: rgba(20, 15, 10, 0.6); padding: 1rem; border-radius: 8px; border-left: 2px solid var(--gold-bright);">
+                                <h4 style="font-size: 1rem; color: var(--gold-bright); margin-bottom: 0.2rem;">The Zero (Śūnya)</h4>
+                                <p style="font-size: 0.82rem; margin-bottom: 0;">
+                                    Transformation of zero from a mere placeholder into a fully operational mathematical numeral.
+                                </p>
+                            </div>
+                            <div style="background: rgba(20, 15, 10, 0.6); padding: 1rem; border-radius: 8px; border-left: 2px solid #50c878;">
+                                <h4 style="font-size: 1rem; color: #a0f0b8; margin-bottom: 0.2rem;">Decimal Place Value</h4>
+                                <p style="font-size: 0.82rem; margin-bottom: 0;">
+                                    <em>"Sthānāt sthānaṁ daśaguṇaṁ syāt"</em> — Each place ten times the preceding one.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- -------------------------------------------------------------
+             SECTION 4 — LITERATURE & EDUCATION (MANUSCRIPTS & KALIDASA)
+             ------------------------------------------------------------- -->
+        <div class="section-outer-wrapper">
+            <section id="literature">
+                <div class="section-header-centered">
+                    <span class="section-eyebrow">The Classical Sanskrit Renaissance</span>
+                    <h2>LITERATURE & EDUCATION</h2>
+                    <div class="gold-filigree-divider"><span class="filigree-emblem">📜</span></div>
+                    <p class="serif-lead">
+                        An age of supreme poetic lyricism, monumental dramas, philosophical treatises, and the emergence of Nālandā as the global capital of learning.
+                    </p>
+                </div>
+
+                <div class="literature-grid">
+                    <!-- Manuscript Archive Panel -->
+                    <div class="manuscript-archive-display">
+                        <div class="corner-ornament corner-top-left"></div>
+                        <div class="corner-ornament corner-top-right"></div>
+                        <div class="corner-ornament corner-bottom-left"></div>
+                        <div class="corner-ornament corner-bottom-right"></div>
+
+                        <div class="kalidasa-spotlight">
+                            <span class="section-eyebrow">Master Dramatist & Poet</span>
+                            <h3 style="font-size: 2.2rem; color: var(--gold-bright); margin-bottom: 0.2rem;">KĀLIDĀSA</h3>
+                            <div class="serif-lead" style="font-size: 1.15rem; color: var(--sandstone-mid); margin-bottom: 1.2rem;">
+                                The Shakespeare of Sanskrit • Jewel of Vikramāditya’s Navaratnas
+                            </div>
+                            <p style="font-size: 0.95rem;">
+                                Celebrated across millennia for his psychological depth, sublime descriptions of the Himalayas and monsoon skies, and mastery of the Vaidarbhi poetic style.
+                            </p>
+                        </div>
+
+                        <!-- Classical Sanskrit Verse Snippet from Meghadūta -->
+                        <div class="sanskrit-verse-panel">
+                            <div class="sanskrit-verse-text">
+                                कश्चित्कान्ताविरहगुरुणा स्वाधिकारात्प्रमत्ततः शङ्केनास्तङ्गमितमहिमा वर्षभोग्येण भर्तुः ।
+                            </div>
+                            <div class="sanskrit-verse-trans">
+                                “A certain Yaksha, negligent in his divine duties, exiled by his lord's curse for a year to the hills of Ramagiri...” — Kālidāsa, Meghadūtam
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 2rem;">
+                            <button type="button" class="btn-antique-gold" id="btn-explore-scroll">
+                                <span>Explore Ancient Scroll</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                    <polyline points="10 9 9 9 8 9"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Literary Genres & Nalanda Center of Learning -->
+                    <div style="display: flex; flex-direction: column; gap: 1.8rem;">
+                        <!-- Sanskrit Literature & Drama -->
+                        <div class="museum-glass-panel">
+                            <h4 style="font-size: 1.35rem; color: var(--gold-bright); margin-bottom: 0.6rem;">Masterworks of Drama & Poetry</h4>
+                            <p style="font-size: 0.92rem; margin-bottom: 0.8rem;">
+                                The Gupta court witnessed a blooming of secular drama and epic poetry that influenced world literature:
+                            </p>
+                            <ul style="list-style: none; font-size: 0.88rem; color: rgba(246, 238, 223, 0.85); display: flex; flex-direction: column; gap: 0.4rem;">
+                                <li><strong style="color: var(--gold-primary);">Abhijñānaśākuntalam:</strong> The recognition of Shakuntala by King Dushyanta.</li>
+                                <li><strong style="color: var(--gold-primary);">Mrichchhakatika:</strong> Sudraka's realistic romance of Charudatta & Vasantasena.</li>
+                                <li><strong style="color: var(--gold-primary);">Panchatantra:</strong> Vishnu Sharma's animal fables teaching Rajaniti (statecraft).</li>
+                                <li><strong style="color: var(--gold-primary);">Amarakosha:</strong> Amarasimha's Sanskrit thesaurus and lexicon.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Centres of Learning: Nalanda Mahavihara -->
+                        <div class="museum-glass-panel" style="border-color: rgba(212, 175, 55, 0.45);">
+                            <span class="timeline-badge">Founded c. 427 CE by Kumaragupta I</span>
+                            <h4 style="font-size: 1.35rem; color: var(--gold-bright); margin-bottom: 0.6rem;">Nālandā Mahāvihāra</h4>
+                            <p style="font-size: 0.92rem; margin-bottom: 0.6rem;">
+                                The world’s first residential international university. Over 10,000 scholars from China, Korea, Tibet, Central Asia, and Sri Lanka studied Buddhist philosophy, Vedic grammar, logic (Nyāya), and medicine.
+                            </p>
+                            <p style="font-size: 0.85rem; color: var(--sandstone-mid); margin-bottom: 0;">
+                                Its legendary nine-storey library, <strong>Dharmagañja</strong> (comprising the towers <em>Ratnasāgara</em>, <em>Ratnodadhi</em>, and <em>Ratnarañjaka</em>), preserved millions of palm-leaf manuscripts.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- -------------------------------------------------------------
+             SECTION 5 — ART & ARCHITECTURE (INTERACTIVE 3D GALLERY)
+             ------------------------------------------------------------- -->
+        <div class="section-outer-wrapper">
+            <section id="art">
+                <div class="section-header-centered">
+                    <span class="section-eyebrow">Aesthetic Perfection & Sacred Geometry</span>
+                    <h2>ART & ARCHITECTURE</h2>
+                    <div class="gold-filigree-divider"><span class="filigree-emblem">🏛️</span></div>
+                    <p class="serif-lead">
+                        The Gupta era established the classical canon of Indian plastic art and rock-cut sanctuaries. Rotate and inspect timeless masterpieces in interactive 3D.
+                    </p>
+                </div>
+
+                <div class="gallery-layout-wrap">
+                    <!-- 3D Interactive Museum Gallery Viewport -->
+                    <div class="gallery-3d-viewport-panel">
+                        <div class="corner-ornament corner-top-left"></div>
+                        <div class="corner-ornament corner-top-right"></div>
+                        <div class="corner-ornament corner-bottom-left"></div>
+                        <div class="corner-ornament corner-bottom-right"></div>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="section-eyebrow" style="margin-bottom: 0;">360° Interactive Artifact</span>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button type="button" class="btn-glass-bronze" id="btn-gallery-zoom-in" title="Zoom In">+</button>
+                                <button type="button" class="btn-glass-bronze" id="btn-gallery-zoom-out" title="Zoom Out">−</button>
+                                <button type="button" class="btn-glass-bronze active" id="btn-gallery-autorotate" title="Auto-Rotate">⟳ Auto</button>
+                            </div>
+                        </div>
+
+                        <!-- 3D Artifact Canvas -->
+                        <div id="gallery-3d-canvas-container"></div>
+
+                        <!-- Artifact Selection Tabs -->
+                        <div class="gallery-nav-bar">
+                            <button type="button" class="gallery-artifact-btn active" data-index="0">Sarnath Buddha</button>
+                            <button type="button" class="gallery-artifact-btn" data-index="1">Mehrauli Iron Pillar</button>
+                            <button type="button" class="gallery-artifact-btn" data-index="2">Dashavatara Temple</button>
+                            <button type="button" class="gallery-artifact-btn" data-index="3">Palm-Leaf Manuscript</button>
+                            <button type="button" class="gallery-artifact-btn" data-index="4">Royal Archer Coin</button>
+                        </div>
+                    </div>
+
+                    <!-- Curatorial Exhibition Plaque -->
+                    <div class="gallery-curatorial-plaque">
+                        <div class="corner-ornament corner-top-left"></div>
+                        <div class="corner-ornament corner-top-right"></div>
+                        <div class="corner-ornament corner-bottom-left"></div>
+                        <div class="corner-ornament corner-bottom-right"></div>
+
+                        <span class="curatorial-label">Curatorial Exhibition Dossier</span>
+                        <h3 class="curatorial-title" id="gallery-artifact-title">Sarnath Buddha (Dharmachakra Mudra)</h3>
+                        <div class="curatorial-era" id="gallery-artifact-era">c. 475 CE • Chunar Sandstone</div>
+
+                        <p id="gallery-artifact-desc">
+                            The supreme embodiment of Gupta classical sculpture. The serene face, diaphanous drapery, and intricately carved halo featuring floral arabesques and celestial beings mark the zenith of Indian plastic art.
+                        </p>
+
+                        <div style="background: rgba(26, 17, 10, 0.7); border-radius: 8px; padding: 1.2rem; margin-top: 1.5rem; border-left: 2px solid var(--gold-bright);">
+                            <h4 style="font-size: 0.95rem; color: var(--gold-bright); margin-bottom: 0.4rem;">Architectural Innovation of the Guptas:</h4>
+                            <p style="font-size: 0.85rem; margin-bottom: 0; color: rgba(246, 238, 223, 0.8);">
+                                Introduction of the structural stone temple with sanctum sanctorum (<em>garbhagriha</em>), covered ambulatory path (<em>pradakshinapatha</em>), and rising pyramidal spire (<em>shikhara</em>).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- -------------------------------------------------------------
+             SECTION 6 — ECONOMY & TRADE (FALLING GOLD COINS & MARKETPLACE)
+             ------------------------------------------------------------- -->
+        <div class="section-outer-wrapper">
+            <section id="economy">
+                <div class="section-header-centered">
+                    <span class="section-eyebrow">Commercial Splendour & Currency</span>
+                    <h2>ECONOMY & TRADE</h2>
+                    <div class="gold-filigree-divider"><span class="filigree-emblem">💰</span></div>
+                    <p class="serif-lead">
+                        Bustling silk bazaars, maritime fleets sailing across the Indian Ocean to Rome and Alexandria, and autonomous merchant guilds governing craft standards.
+                    </p>
+                </div>
+
+                <div class="economy-grid">
+                    <!-- Economy Features & Mint Simulator -->
+                    <div class="economy-stats-card">
+                        <span class="section-eyebrow">The Imperial Treasury</span>
+                        <h3 style="font-size: 1.8rem; color: var(--gold-bright); margin-bottom: 0.6rem;">Gold Dīnāras & Agricultural Bounty</h3>
+                        <p style="font-size: 0.95rem;">
+                            The Gupta economy was powered by an abundant agrarian surplus, state-maintained irrigation systems (such as the Sudarśana reservoir repairs recorded on Skandagupta's Junagadh inscription), and high-purity gold coinage.
+                        </p>
+
+                        <!-- Mint Simulator -->
+                        <div class="economy-mint-simulator">
+                            <div class="mint-counter-box">
+                                <span class="mint-counter-num" id="minted-coins-counter">108</span>
+                                <span class="mint-counter-sub">Gold Dīnāras Minted</span>
+                            </div>
+                            <button type="button" class="btn-antique-gold" id="btn-mint-coin" style="padding: 0.75rem 1.6rem; font-size: 0.85rem;">
+                                <span>Mint A Coin</span>
+                                <span>✦</span>
+                            </button>
+                        </div>
+                        <div style="font-size: 0.8rem; color: var(--sandstone-mid); margin-top: 0.6rem;">
+                            Click to shower 3D gold coins across the virtual museum!
+                        </div>
+                    </div>
+
+                    <!-- Global Trade Routes -->
+                    <div class="trade-routes-list">
+                        <div class="trade-route-item">
+                            <h4 style="font-size: 1.15rem; color: var(--gold-bright); margin-bottom: 0.3rem;">⚓ Maritime Trade with Rome & Byzantium</h4>
+                            <p style="font-size: 0.88rem; margin-bottom: 0;">
+                                Through western ports like Bharuch (Barygaza), Indian merchants exported fine muslin, black pepper ("black gold"), ivory, perfumes, and Wootz crucible steel in exchange for Roman gold dinarii.
+                            </p>
+                        </div>
+
+                        <div class="trade-route-item">
+                            <h4 style="font-size: 1.15rem; color: var(--gold-bright); margin-bottom: 0.3rem;">🚢 Suvarṇabhūmi (Southeast Asian Route)</h4>
+                            <p style="font-size: 0.88rem; margin-bottom: 0;">
+                                Fleets departed from Tāmralipti in Bengal across the Bay of Bengal to Java, Sumatra, and the Malacca Straits, trading textiles and bronze for aromatic spices, camphor, and gold.
+                            </p>
+                        </div>
+
+                        <div class="trade-route-item">
+                            <h4 style="font-size: 1.15rem; color: var(--gold-bright); margin-bottom: 0.3rem;">🏛️ The Śreṇīs (Autonomous Merchant Guilds)</h4>
+                            <p style="font-size: 0.88rem; margin-bottom: 0;">
+                                Guilds of silk-weavers, potters, and oil-millers maintained independent judicial courts, acted as banks accepting public deposits, and funded civic temples and charitable inns.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- -------------------------------------------------------------
+             SECTION 7 — RELIGION & CULTURE (INCENSE SANCTUARY)
+             ------------------------------------------------------------- -->
+        <div class="section-outer-wrapper">
+            <section id="culture">
+                <div class="section-header-centered">
+                    <span class="section-eyebrow">Harmonious Synthesis</span>
+                    <h2>RELIGION & CULTURE</h2>
+                    <div class="gold-filigree-divider"><span class="filigree-emblem">🪔</span></div>
+                    <p class="serif-lead">
+                        An extraordinary era of pluralistic harmony, where Hinduism, Buddhism, and Jainism flourished side-by-side under royal tolerance and civic generosity.
+                    </p>
+                </div>
+
+                <div class="culture-grid">
+                    <!-- Hindu Traditions -->
+                    <div class="culture-tradition-card">
+                        <div class="culture-icon-badge">ॐ</div>
+                        <h3 style="font-size: 1.4rem; color: var(--gold-bright); margin-bottom: 0.5rem;">Hindu Traditions</h3>
+                        <div class="serif-lead" style="font-size: 1rem; color: var(--sandstone-mid); margin-bottom: 1rem;">
+                            Vaishnavism & Shaivism
+                        </div>
+                        <p style="font-size: 0.9rem;">
+                            The imperial rulers declared themselves <em>Parama-Bhāgavata</em> (devout followers of Vishnu), while actively patronizing Shiva shrines. Sacred Puranas were canonized, and Bhakti devotion emerged as a central spiritual ethos.
+                        </p>
+                    </div>
+
+                    <!-- Buddhism -->
+                    <div class="culture-tradition-card">
+                        <div class="culture-icon-badge">☸</div>
+                        <h3 style="font-size: 1.4rem; color: var(--gold-bright); margin-bottom: 0.5rem;">Buddhism</h3>
+                        <div class="serif-lead" style="font-size: 1rem; color: var(--sandstone-mid); margin-bottom: 1rem;">
+                            Mahāyāna & Monastic Universities
+                        </div>
+                        <p style="font-size: 0.9rem;">
+                            Philosophers Asanga and Vasubandhu established the Yogācāra school. Royal land grants sustained flourishing monasteries at Sarnath, Ajanta, and Nalanda, attracting pilgrims and monks from all of Asia.
+                        </p>
+                    </div>
+
+                    <!-- Jainism -->
+                    <div class="culture-tradition-card">
+                        <div class="culture-icon-badge">卐</div>
+                        <h3 style="font-size: 1.4rem; color: var(--gold-bright); margin-bottom: 0.5rem;">Jainism</h3>
+                        <div class="serif-lead" style="font-size: 1rem; color: var(--sandstone-mid); margin-bottom: 1rem;">
+                            Second Council of Valabhī
+                        </div>
+                        <p style="font-size: 0.9rem;">
+                            Flourished in Mathura and Gujarat. The Second Jain Council at Valabhi in Saurashtra codified the sacred Śvetāmbara canonical scriptures. Beautiful Tirthankara sculptures were carved at Udayagiri and Kahaum.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Festivals & Performing Arts -->
+                <div class="museum-glass-panel" style="margin-top: 2.8rem; text-align: center;">
+                    <h4 style="font-size: 1.25rem; color: var(--gold-bright); margin-bottom: 0.5rem;">Festivals, Dance & Cultural Practices</h4>
+                    <p style="max-width: 820px; margin: 0 auto; font-size: 0.92rem; color: rgba(246, 238, 223, 0.85);">
+                        The Gupta era celebrated <em>Vasantotsava</em> (Spring Festival of Kamadeva), dramatic theatrical recitals in temple mandapas, classical dance governed by Bharata Muni’s <em>Nāṭyaśāstra</em>, and royal musical soirées.
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <!-- -------------------------------------------------------------
+             SECTION 8 — DECLINE OF THE EMPIRE (DARK BRONZE & CRACKED STONE)
+             ------------------------------------------------------------- -->
+        <div class="section-outer-wrapper decline-section-wrapper">
+            <section id="decline">
+                <div class="section-header-centered">
+                    <span class="section-eyebrow" style="color: #bfa07c; border-color: rgba(191, 160, 124, 0.3);">Twilight of the Dynasty</span>
+                    <h2 style="color: #ecd2b0;">THE DECLINE</h2>
+                    <div class="gold-filigree-divider"><span class="filigree-emblem" style="color: #bfa07c;">⚔</span></div>
+                    
+                    <!-- Cracked Ancient Stone Visual Transition Fissure -->
+                    <div class="cracked-stone-fissure-bar">
+                        <svg viewBox="0 0 600 30" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 15 L120 18 L180 8 L240 22 L310 12 L380 24 L450 14 L520 19 L590 15" stroke="#8c6442" stroke-width="2"/>
+                            <path d="M180 8 L195 2 M240 22 L250 28 M380 24 L390 29 M450 14 L460 6" stroke="#684728" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+
+                    <p class="serif-lead" style="color: #b89f88;">
+                        Gradual dissolution from bright gold into darker bronze: invasions, regional fragmentation, and fiscal strains reshaped the political landscape of ancient India.
+                    </p>
+                </div>
+
+                <div class="decline-timeline-grid">
+                    <!-- Phase 1: Huna Invasions -->
+                    <div class="decline-phase-card">
+                        <div class="decline-phase-num">01</div>
+                        <h4 style="font-size: 1.2rem; color: #eed2b3; margin-bottom: 0.4rem;">Hūṇa Invasions</h4>
+                        <p style="font-size: 0.88rem; color: rgba(246, 238, 223, 0.75);">
+                            Hephthalite (White Hūṇa) incursions led by Toramāṇa and Mihirakula battered northwestern frontiers. Although Emperor Skandagupta (c. 455–467 CE) heroically defeated them, the wars depleted imperial treasuries.
+                        </p>
+                    </div>
+
+                    <!-- Phase 2: Regional Powers -->
+                    <div class="decline-phase-card">
+                        <div class="decline-phase-num">02</div>
+                        <h4 style="font-size: 1.2rem; color: #eed2b3; margin-bottom: 0.4rem;">Rise of Feudatories</h4>
+                        <p style="font-size: 0.88rem; color: rgba(246, 238, 223, 0.75);">
+                            Local governors and feudatories declared independence: the Maitrakas of Valabhī, the Maukharis of Kannauj, the Later Guptas of Magadha, and King Yaśodharman of Malwa who challenged imperial hegemony.
+                        </p>
+                    </div>
+
+                    <!-- Phase 3: Economic Pressures -->
+                    <div class="decline-phase-card">
+                        <div class="decline-phase-num">03</div>
+                        <h4 style="font-size: 1.2rem; color: #eed2b3; margin-bottom: 0.4rem;">Economic Pressures</h4>
+                        <p style="font-size: 0.88rem; color: rgba(246, 238, 223, 0.75);">
+                            Disruption of overland Silk Road routes and the collapse of direct Roman trade reduced customs revenues. Late Gupta coins demonstrate progressive debasement in metallic gold content.
+                        </p>
+                    </div>
+
+                    <!-- Phase 4: Political Instability -->
+                    <div class="decline-phase-card">
+                        <div class="decline-phase-num">04</div>
+                        <h4 style="font-size: 1.2rem; color: #eed2b3; margin-bottom: 0.4rem;">Succession Crises</h4>
+                        <p style="font-size: 0.88rem; color: rgba(246, 238, 223, 0.75);">
+                            Dynastic disputes after Skandagupta led to rapid successions among Narasimhagupta Bālāditya, Kumāragupta III, and Vishnugupta (c. 540–550 CE), fracturing central control.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- -------------------------------------------------------------
+             SECTION 9 — THE ENDURING LEGACY (5 GLOWING MONOLITH PILLARS)
+             ------------------------------------------------------------- -->
+        <div class="section-outer-wrapper">
+            <section id="legacy">
+                <div class="section-header-centered">
+                    <span class="section-eyebrow">The Five Pillars of Civilization</span>
+                    <h2>THE ENDURING LEGACY</h2>
+                    <div class="gold-filigree-divider"><span class="filigree-emblem">🏛️</span></div>
+                    <p class="serif-lead">
+                        Five eternal pillars that continue to illuminate global human knowledge and artistic imagination.
+                    </p>
+                </div>
+
+                <!-- Five Glowing Monolith Pillars -->
+                <div class="legacy-monoliths-row">
+                    <!-- Pillar 1: SCIENCE -->
+                    <div class="monolith-pillar-card" style="border-top: 3px solid #50c878;">
+                        <span class="monolith-icon-glow" style="color: #50c878;">🔭</span>
+                        <div class="monolith-name">SCIENCE</div>
+                        <p style="font-size: 0.85rem; color: rgba(246, 238, 223, 0.8);">
+                            Axial rotation of Earth, solar/lunar eclipse theory, Ayurvedic pharmacology, rustless metallurgy.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 2: MATHEMATICS -->
+                    <div class="monolith-pillar-card" style="border-top: 3px solid #4aa3df;">
+                        <span class="monolith-icon-glow" style="color: #4aa3df;">∞</span>
+                        <div class="monolith-name">MATHEMATICS</div>
+                        <p style="font-size: 0.85rem; color: rgba(246, 238, 223, 0.8);">
+                            The zero concept (<em>śūnya</em>), decimal place-value system, sine tables, pi calculated to 3.1416.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 3: LITERATURE -->
+                    <div class="monolith-pillar-card" style="border-top: 3px solid #e6a817;">
+                        <span class="monolith-icon-glow" style="color: #e6a817;">📜</span>
+                        <div class="monolith-name">LITERATURE</div>
+                        <p style="font-size: 0.85rem; color: rgba(246, 238, 223, 0.8);">
+                            Kālidāsa’s sublime poetry, Panchatantra fables translated globally, classical Sanskrit grammatical perfection.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 4: ART -->
+                    <div class="monolith-pillar-card" style="border-top: 3px solid #df5a3f;">
+                        <span class="monolith-icon-glow" style="color: #df5a3f;">🗿</span>
+                        <div class="monolith-name">ART</div>
+                        <p style="font-size: 0.85rem; color: rgba(246, 238, 223, 0.8);">
+                            Sarnath Buddha sculptures, Ajanta rock-cut frescoes, classical canons of spiritual serenity and beauty.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 5: CULTURE -->
+                    <div class="monolith-pillar-card" style="border-top: 3px solid #b872e6;">
+                        <span class="monolith-icon-glow" style="color: #b872e6;">🪷</span>
+                        <div class="monolith-name">CULTURE</div>
+                        <p style="font-size: 0.85rem; color: rgba(246, 238, 223, 0.8);">
+                            Nālandā international university, religious pluralism, maritime diffusion across Southeast Asia.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Grand Statement -->
+                <div class="grand-legacy-quote-box">
+                    <p class="grand-legacy-quote-text">
+                        “The Gupta Age continues to be remembered for its remarkable contributions to Indian civilization.”
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <!-- -------------------------------------------------------------
+             FINAL SECTION: ANCIENT STONE INSCRIPTION PANEL
+             ------------------------------------------------------------- -->
+        <div class="section-outer-wrapper">
+            <section id="inscription">
+                <div class="stone-inscription-slab">
+                    <span class="section-eyebrow" style="margin-bottom: 1rem;">Monumental Epigraph</span>
+                    
+                    <h2 class="inscription-title">THE GUPTA AGE</h2>
+                    
+                    <div class="inscription-subtitle">A Legacy Written in Stone</div>
+
+                    <!-- Interactive Charcoal Rubbing Canvas -->
+                    <div class="inscription-rubbing-wrap">
+                        <canvas id="stone-rubbing-canvas"></canvas>
+                        <div class="rubbing-hint">
+                            ✎ Drag or swipe your cursor over the sandstone tablet to perform an ancient charcoal rubbing and reveal the Brahmi characters!
+                        </div>
+                        <button type="button" class="btn-glass-bronze" id="btn-reset-rubbing" style="margin-top: 0.8rem; font-size: 0.75rem;">
+                            Reset Inscription
+                        </button>
+                    </div>
+
+                    <div class="explore-learn-preserve-banner">
+                        <span>EXPLORE</span>
+                        <span>•</span>
+                        <span>LEARN</span>
+                        <span>•</span>
+                        <span>PRESERVE</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- -------------------------------------------------------------
+         FOOTER
+         ------------------------------------------------------------- -->
+    <footer id="museum-footer">
+        <div class="footer-manifesto">
+            THE GUPTA AGE • ANCIENT INDIA • DIGITAL HISTORY PORTFOLIO
+        </div>
+        <p class="footer-credits">
+            Curated as a 3D educational archive dedicated to the preservation of India's Golden Age (c. 320–550 CE).
+            Synthesizing epigraphic sources from the Allahabad Prashasti, numismatics of the Imperial Mint, and astronomical treatises of Aryabhata.
+        </p>
+    </footer>
+
+    <!-- -------------------------------------------------------------
+         MODAL: UNROLLING PALM-LEAF MANUSCRIPT SCROLL (SECTION 4)
+         ------------------------------------------------------------- -->
+    <div id="manuscript-scroll-modal" role="dialog" aria-modal="true" aria-labelledby="scroll-modal-title">
+        <div class="parchment-scroll-container">
+            <div class="scroll-top-rod"></div>
+            <div class="parchment-scroll-body" id="parchment-scroll-body">
+                <button type="button" class="scroll-close-btn" id="btn-close-scroll" aria-label="Close Scroll">✕</button>
+
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <span style="font-family: var(--font-heading); font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; color: #7a461c;">
+                        Imperial Palm-Leaf Archive • Tāḍapatra Folio
+                    </span>
+                    <h3 id="scroll-modal-title" style="font-family: var(--font-heading-ornate); font-size: 2rem; color: #4a2810; margin-top: 0.4rem;">
+                        Verses of Kālidāsa & Nālandā Manuscripts
+                    </h3>
+                    <div style="width: 120px; height: 1px; background: #8a582c; margin: 0.8rem auto;"></div>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="color: #5c3214; font-size: 1.2rem; margin-bottom: 0.4rem;">I. Abhijñānaśākuntalam (Act IV)</h4>
+                    <p style="font-family: var(--font-serif-body); font-size: 1.25rem; font-style: italic; color: #3b220d; line-height: 1.6;">
+                        “यास्यत्यद्य शकुन्तलेति हृदयं संस्पृष्टमुत्कण्ठया कण्ठः स्तम्भितबाष्पवृत्तिकलुषश्चिन्ताजडं दर्शनम्...”<br>
+                        <em>“Today Shakuntala departs for her husband's home; at this thought my heart is touched with sorrow, my throat is choked with suppressed tears...”</em> — Sage Kanva's farewell.
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="color: #5c3214; font-size: 1.2rem; margin-bottom: 0.4rem;">II. The Nālandā Academic Curriculum</h4>
+                    <p style="font-size: 0.95rem; color: #422915; line-height: 1.7;">
+                        According to travel chronicles, prospective students were examined at the mountain gate by the <em>Dvāra-Paṇḍita</em> (Keeper of the Gate). Only two or three out of ten applicants succeeded in gaining admission to study:
+                    </p>
+                    <ul style="margin-left: 1.5rem; font-size: 0.92rem; color: #422915; line-height: 1.8;">
+                        <li><strong>Śabdavidyā:</strong> Sanskrit Linguistics and Paninian Grammar</li>
+                        <li><strong>Hetuvidyā:</strong> Formal Logic, Nyāya and Dignāga's Epistemology</li>
+                        <li><strong>Cikitsāvidyā:</strong> Medicine, Surgery, and Ayurvedic Pharmacopeia</li>
+                        <li><strong>Adhyātmavidyā:</strong> Metaphysics, Madhyamaka and Yogācāra Philosophy</li>
+                    </ul>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem; border-top: 1px dashed #996633; padding-top: 1rem; font-size: 0.85rem; color: #6d4320;">
+                    Preserved in the <em>Dharmagañja</em> • Click outside or ✕ to roll the manuscript
+                </div>
+            </div>
+            <div class="scroll-bottom-rod"></div>
+        </div>
+    </div>
+
+    <!-- -------------------------------------------------------------
+         MODAL: IMPERIAL RULER DOSSIER POPUP (SECTION 2)
+         ------------------------------------------------------------- -->
+    <div id="details-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-dialog-panel">
+            <button type="button" class="modal-close-btn" id="btn-close-modal" aria-label="Close Dialog">✕</button>
+            <h3 id="modal-title" style="font-size: 2rem; color: var(--gold-bright);">Ruler Details</h3>
+            <div id="modal-subtitle" class="serif-lead" style="color: var(--sandstone-mid); margin-bottom: 1.5rem;">Subtitle</div>
+            <div id="modal-body-content"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript Execution Scripts -->
+    <script src="js/audio.js"></script>
+    <script src="js/three-scene.js"></script>
+    <script src="js/artifacts-3d.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

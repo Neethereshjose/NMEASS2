@@ -1,0 +1,387 @@
+/* ==========================================================================
+   THE GUPTA AGE — THE GOLDEN AGE OF ANCIENT INDIA
+   Cinematic Ancient Indian Virtual Museum Design System
+   ========================================================================== */
+
+:root {
+    /* Color Palette */
+    --gold-primary: #d4af37;
+    --gold-bright: #ffd700;
+    --gold-light: #ffeb99;
+    --gold-burnished: #9e7a2b;
+    --sandstone-light: #f3dfca;
+    --sandstone-mid: #dfb482;
+    --sandstone-dark: #b88b56;
+    --royal-brown: #24170e;
+    --royal-brown-deep: #160e08;
+    --bronze-dark: #3a2a1c;
+    --bronze-mid: #553e28;
+    --parchment-cream: #f6eedf;
+    --subtle-black: #0c0806;
+    --pitch-black: #050403;
+
+    /* Glassmorphism & Surface Colors */
+    --surface-glass-dark: rgba(22, 14, 8, 0.72);
+    --surface-glass-gold: rgba(212, 175, 55, 0.08);
+    --surface-glass-border: rgba(212, 175, 55, 0.28);
+    --surface-glass-highlight: rgba(255, 235, 170, 0.45);
+    --shadow-depth-1: 0 10px 30px rgba(0, 0, 0, 0.6);
+    --shadow-depth-2: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 40px rgba(212, 175, 55, 0.12);
+    --shadow-gold-glow: 0 0 25px rgba(212, 175, 55, 0.35);
+
+    /* Typography */
+    --font-heading-ornate: 'Cinzel Decorative', 'Cinzel', Georgia, serif;
+    --font-heading: 'Cinzel', Georgia, serif;
+    --font-serif-body: 'Cormorant Garamond', Garamond, serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    --transition-fast: all 0.2s ease;
+}
+
+/* Reset & Box Sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    background-color: var(--pitch-black);
+    color: var(--parchment-cream);
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    background-color: transparent;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--royal-brown-deep);
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--gold-burnished), var(--gold-primary));
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-bright);
+}
+
+/* Background 3D Canvas Container */
+#three-bg-canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+#three-bg-canvas-container canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Top Scroll Progress Bar */
+#scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--gold-burnished), var(--gold-bright), #fff);
+    box-shadow: 0 0 10px var(--gold-bright);
+    z-index: 1000;
+    transition: width 0.1s ease-out;
+}
+
+/* Base Typography */
+h1, h2, h3, h4, .ornate-title {
+    font-family: var(--font-heading);
+    color: var(--gold-primary);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212, 175, 55, 0.2);
+    letter-spacing: 0.08em;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 6vw, 4.8rem);
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    position: relative;
+    display: inline-block;
+}
+
+h3 {
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    color: var(--sandstone-light);
+}
+
+p {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    color: rgba(246, 238, 223, 0.88);
+    font-weight: 300;
+    margin-bottom: 1.2rem;
+}
+
+.serif-lead {
+    font-family: var(--font-serif-body);
+    font-size: 1.35rem;
+    font-style: italic;
+    color: var(--sandstone-mid);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--gold-primary);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+a:hover {
+    color: var(--gold-bright);
+}
+
+/* Ornate Headings & Dividers */
+.section-header-centered {
+    text-align: center;
+    max-width: 860px;
+    margin: 0 auto 3.5rem auto;
+    position: relative;
+}
+
+.section-eyebrow {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--gold-primary);
+    padding: 0.35rem 1.2rem;
+    border: 1px solid var(--surface-glass-border);
+    background: rgba(212, 175, 55, 0.06);
+    border-radius: 20px;
+    margin-bottom: 1.2rem;
+    backdrop-filter: blur(8px);
+}
+
+.gold-filigree-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.2rem auto 1.5rem auto;
+    width: 240px;
+    height: 16px;
+    position: relative;
+}
+
+.gold-filigree-divider::before,
+.gold-filigree-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+}
+
+.filigree-emblem {
+    margin: 0 14px;
+    color: var(--gold-primary);
+    font-size: 1.1rem;
+    filter: drop-shadow(0 0 5px var(--gold-primary));
+}
+
+/* Glassmorphism Card System */
+.museum-glass-panel {
+    background: var(--surface-glass-dark);
+    border: 1px solid var(--surface-glass-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 12px;
+    padding: 2.2rem;
+    box-shadow: var(--shadow-depth-1);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.museum-glass-panel:hover {
+    border-color: rgba(212, 175, 55, 0.55);
+    box-shadow: var(--shadow-depth-2);
+}
+
+/* Corner Ornaments for Historical Cards */
+.corner-ornament {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: var(--gold-primary);
+    pointer-events: none;
+    opacity: 0.65;
+    transition: var(--transition-smooth);
+}
+
+.museum-glass-panel:hover .corner-ornament {
+    opacity: 1;
+    border-color: var(--gold-bright);
+    filter: drop-shadow(0 0 4px var(--gold-bright));
+}
+
+.corner-top-left {
+    top: 6px;
+    left: 6px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+}
+.corner-top-right {
+    top: 6px;
+    right: 6px;
+    border-top: 2px solid;
+    border-right: 2px solid;
+}
+.corner-bottom-left {
+    bottom: 6px;
+    left: 6px;
+    border-bottom: 2px solid;
+    border-left: 2px solid;
+}
+.corner-bottom-right {
+    bottom: 6px;
+    right: 6px;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+}
+
+/* Interactive Buttons */
+.btn-antique-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 1.1rem 2.8rem;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--subtle-black);
+    background: linear-gradient(135deg, #ffe680 0%, #d4af37 50%, #aa8225 100%);
+    border: 1px solid #fff3a8;
+    border-radius: 6px;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    z-index: 1;
+}
+
+.btn-antique-gold::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: rotate(45deg) translateY(-100%);
+    transition: transform 0.8s ease;
+    z-index: -1;
+}
+
+.btn-antique-gold:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 35px rgba(212, 175, 55, 0.65), 0 0 20px #ffe680;
+    color: #000;
+}
+
+.btn-antique-gold:hover::after {
+    transform: rotate(45deg) translateY(100%);
+}
+
+.btn-glass-bronze {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.6rem;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sandstone-light);
+    background: rgba(45, 30, 20, 0.6);
+    border: 1px solid var(--surface-glass-border);
+    border-radius: 6px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: var(--transition-smooth);
+}
+
+.btn-glass-bronze:hover {
+    background: rgba(212, 175, 55, 0.18);
+    border-color: var(--gold-bright);
+    color: var(--gold-bright);
+    box-shadow: var(--shadow-gold-glow);
+}
+
+/* Sections Structure */
+section {
+    min-height: 100vh;
+    padding: 7rem 2rem 5rem 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1360px;
+    margin: 0 auto;
+}
+
+/* Full Width Wrappers for Seamless Background */
+.section-outer-wrapper {
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+}
+
+/* Responsive Grid Systems */
+.grid-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.grid-three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.2rem;
+}
+
+@media (max-width: 1024px) {
+    .grid-two-col,
+    .grid-three-col {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
